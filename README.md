@@ -1,4 +1,6 @@
-"# Stonecraft-WorldAtlas" 
+# Stonecraft WorldAtlas
+
+A web-based viewer for Stonecraft/Minetest world maps generated with minetestmapper.
 
 ## Requirements
 
@@ -18,7 +20,6 @@ $ sudo apt-get install git-core build-essential libgd-dev libsqlite3-dev libleve
 
 Download source via github:
 
-
 ```
 $ git clone --depth 1 https://github.com/MrCerealGuy/Stonecraft-WorldAtlas.git
 ```
@@ -30,11 +31,11 @@ $ cd Stonecraft-WorldAtlas
 $ git clone --depth 1 https://github.com/MrCerealGuy/minetestmapper.git
 ```
 
-Compile minetestmapper:
+Compile minetestmapper (only sqlite3 support):
 
 ```
 $ cd minetestmapper
-$ cmake . -DENABLE_LEVELDB=1
+$ cmake .
 $ make -j2
 ```
 
@@ -45,3 +46,5 @@ Edit *generate_map.sh* and set *WORLD_PATH* and *WWW_ROOT*. Run the script:
 ```
 $ ./generate_map.sh
 ```
+
+Now create a cronjob to do this stuff by your Stonecraft server.
