@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" class="">	
+	<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Stonecraft is an infinite-world block adventure game.">
+
+	<link href="./css/jquery.fancybox.min.css" rel="stylesheet">
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+
+	<title>Stonecraft</title>
+
+	<style type='text/css'>
+		table {
+			
+			transform: rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
+			zoom: 0.25;
+			-moz-transform: scale(0.25);
+			-moz-transform-origin: 0 0;
+			
+			border-collapse: collapse;
+			border: 1px solid white;
+		}
+		
+		.compass {
+			transform: rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
+			-moz-transform-origin: 0 0;
+		}
+		
+		#sticky {
+			z-index:+1;
+		}
+		
+		
+		tr, td {
+			border: 1px solid white;
+		}
+		
+		.fancybox-margin {
+			margin-right:14px;
+		} 
+		
+		.thumbnail {
+			padding:0px !important; width: 308px !important;
+		}
+		
+		.hover {
+
+			/*Transition*/
+			-webkit-transition: all 0.5s ease;
+			-moz-transition: all 0.5s ease;
+			-o-transition: all 0.5s ease;
+			
+			/*Reflection*/
+			-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.1)));
+		}
+			  
+		.hover:hover {  
+		   opacity: 0.7;
+		   
+		   /*Reflection*/
+		  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.4)));
+		 
+		   /*Glow*/
+		  -webkit-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+		  -moz-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+		  box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+		}  
+	</style>
+
+	<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+
+	<script type="text/javascript">
+		$(window).load(function(){
+
+			$(function() {
+				
+				var nav = $('#sticky');
+				var navHomeY = nav.offset().top;
+				var isFixed = false;
+				var $w = $(window);
+				
+				$w.scroll(function() {
+					var scrollTop = $w.scrollTop();
+					var shouldBeFixed = scrollTop > navHomeY;
+					if (shouldBeFixed && !isFixed) {
+						nav.css({
+							position: 'fixed',
+							top: 0,
+							left: nav.offset().left,
+							width: nav.width()
+						});
+						isFixed = true;
+					}
+					else if (!shouldBeFixed && isFixed)
+					{
+						nav.css({
+							position: 'static'
+						});
+						isFixed = false;
+					}
+				});
+			});
+		});
+	</script>
+
+	</head>
+	<body>
+		<div id="sticky">
+			<img class="compass" src="./gfx/compass.png" alt="Compass">
+		</div>
