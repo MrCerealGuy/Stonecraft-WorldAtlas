@@ -1,0 +1,37 @@
+## Editors and Development environments
+*~
+*.swp
+*.bak*
+*.orig
+# Vim
+*.vim
+# Kate
+.*.kate-swp
+.swp.*
+
+# KDevelop4
+.kdev4/
+*.kdev4
+
+# Eclipse (CDT and LDT)
+.project
+.cproject
+.settings/
+.buildpath
+.metadata
+
+# GNU Global
+tags
+!tags/
+gtags.files
+.idea/*
+
+## Non-static directories or symlinks to these
+/minetestmapper/
+
+## Build files
+CMakeFiles
+Makefile
+CMakeCache.txt
+CPackConfig.cmake
+CPackSourceConfig.cmake
