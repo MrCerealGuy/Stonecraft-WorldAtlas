@@ -13,6 +13,8 @@
 
 	<style type='text/css'>
 		table {
+			margin-left: auto;
+    		margin-right: auto;
 			
 			transform: rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
 			zoom: 0.25;
