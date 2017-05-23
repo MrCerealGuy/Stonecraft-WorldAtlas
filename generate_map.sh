@@ -18,7 +18,10 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 # Made by Andreas 'MrCerealGuy' Zahnleiter
-# 2017-01-22: mrcerealguy: initial release
+# 2017-01-22: MrcerealGuy: initial release
+# 2017-05-23: MrCerealGuy: use absolute paths
+
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 WORLD_PATH="/to/world/path"		# e.g. /usr/games/stonecraft/worlds/world1
 WWW_ROOT="/to/www/path"			# e.g. /var/www
@@ -35,7 +38,7 @@ if [ ! -d "$WWW_ROOT" ]; then
 fi
 
 # check if minetestmapper exists
-if [ ! -f "./minetestmapper/minetestmapper" ]; then
+if [ ! -f "$dir/minetestmapper/minetestmapper" ]; then
 	echo -e "minetestmapper not found!"
 	exit 1
 fi
@@ -54,10 +57,10 @@ fi
 [ ! -d "$WWW_ROOT/js" ] && rsync -r --info=progress2 js $WWW_ROOT/
 
 # generate map
-./minetestmapper/minetestmapper --drawalpha --scalecolor '#ffffff' --bgcolor '#000000' --scales 'tlrb' --colors './minetestmapper/colors.txt' -i $WORLD_PATH -o ./map-notinterlaced.png
+$dir/minetestmapper/minetestmapper --drawalpha --scalecolor '#ffffff' --bgcolor '#000000' --scales 'tlrb' --colors "$dir/minetestmapper/colors.txt" -i $WORLD_PATH -o $dir/map-notinterlaced.png
 
 # generate interlaced image from map
-convert -strip -interlace PNG -quality 80 map-notinterlaced.png $WWW_ROOT/map.png
+convert -strip -interlace PNG -quality 80 $dir/map-notinterlaced.png $WWW_ROOT/map.png
 
 # make thumbnail from map
 convert $WWW_ROOT/map.png -thumbnail 1000 $WWW_ROOT/map_small.png
@@ -69,7 +72,7 @@ convert $WWW_ROOT/map.png -crop 1000x1000 -set filename:tile "%[fx:page.x/1000+1
 rows="$(ls -1tr $WWW_ROOT/map_tile* | tail -1 | grep -Po '([0-9]+)' | head -1)"
 lines="$(ls -1tr $WWW_ROOT/map_tile* | tail -1 | grep -Po '([0-9]+)' | tail -1)"
 
-map_html="$(cat map_head.html.in)"
+map_html="$(cat $dir/map_head.html.in)"
 map_html="$map_html <table>"
 
 for (( i=1; i<=$lines; i++ ))
@@ -87,7 +90,7 @@ do
 done
 
 map_html="$map_html </table>"
-map_html="$map_html $(cat map_tail.html.in)"
+map_html="$map_html $(cat $dir/map_tail.html.in)"
 
 echo -e "$map_html" > $WWW_ROOT/worldatlas.html
 echo -e "Generating successfully. Run http://localhost:80/worldatlas.html."
