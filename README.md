@@ -2,6 +2,8 @@
 
 A web-based viewer for Stonecraft/Minetest world maps generated with minetestmapper.
 
+![](stonecraft-mapviewer-1000.png)
+
 ## Requirements
 
 - libgd
