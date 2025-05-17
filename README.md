@@ -1,44 +1,46 @@
 # Stonecraft WorldAtlas
 
-A web-based viewer for Stonecraft/Minetest world maps generated with minetestmapper.
+A web-based viewer for Stonecraft/Luanti world maps generated with minetestmapper.
 
 ![](stonecraft-mapviewer-1000.png)
 
 ## Requirements
 
+- C++ compiler, zlib, zstd
 - libgd
 - sqlite3
-- leveldb (optional, set ENABLE_LEVELDB=1 in CMake to enable)
-- hiredis (optional, set ENABLE_REDIS=1 in CMake to enable)
-- Postgres libraries (optional, set ENABLE_POSTGRES=1 in CMake to enable)
+- LevelDB (optional)
+- hiredis (optional)
+- Postgres libraries (optional)
 - ImageMagick
 
 
 ```
-$ sudo apt-get install git-core build-essential libgd-dev libsqlite3-dev libleveldb-dev libhiredis-dev libpq-dev imagemagick
+$ sudo apt-get install cmake git-core build-essential libgd-dev libsqlite3-dev libleveldb-dev libhiredis-dev libpq-dev zlib1g-dev libzstd-dev imagemagick
 ```
 
 ## Compilation on GNU/Linux (e.g. Ubuntu)
 
-Download source via github:
+Download WorldAtlas via github:
 
 ```
-$ git clone --depth 1 https://github.com/MrCerealGuy/Stonecraft-WorldAtlas.git
+$ cd <STONECRAFT-DIR>
+$ git clone --depth 1 https://github.com/MrCerealGuy/Stonecraft-WorldAtlas.git worldatlas
 ```
 
-Change into the WorldAtlas directory and get the source for minetestmapper:
+Download minetestmapper via github:
 
 ```
-$ cd Stonecraft-WorldAtlas
-$ git clone --depth 1 https://github.com/MrCerealGuy/minetestmapper.git
+$ cd worldatlas
+$ git clone --depth 1 https://github.com/luanti-org/minetestmapper.git minetestmapper
 ```
 
-Compile minetestmapper (only sqlite3 support):
+Compile minetestmapper :
 
 ```
 $ cd minetestmapper
-$ cmake .
-$ make -j2
+$ cmake . -DENABLE_LEVELDB=1
+$ make -j$(nproc)
 ```
 
 ## Usage
