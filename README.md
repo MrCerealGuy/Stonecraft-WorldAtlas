@@ -45,7 +45,19 @@ $ make -j$(nproc)
 
 ## Usage
 
-Edit *generate_map.sh* and set *WORLD_PATH* and *WWW_ROOT*. Run the script:
+```
+$ cd <STONECRAFT-DIR>/worldatlas
+$ nano generate_map.sh
+```
+
+Edit *generate_map.sh* and set *WORLD_PATH* and *WWW_ROOT*, e.g.:
+
+```
+WORLD_PATH="/home/andreas/dev/stonecraft/worlds/MyWorld"
+WWW_ROOT="/home/andreas/dev/stonecraft/worldatlas"
+```
+
+Run the script:
 
 ```
 $ ./generate_map.sh
